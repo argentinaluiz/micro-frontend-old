@@ -1,0 +1,5 @@
+.idea/
+.vscode/
+.docker/dbdata/
+.npm-cache/
+.history/

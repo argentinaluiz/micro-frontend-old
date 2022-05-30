@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+    backend:
+        build: ./backend
+        entrypoint: ./.docker/entrypoint.sh
+        volumes:
+            - ./backend:/var/www
+            - ./backend/.docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+        ports:
+          - 8000:8000
+    
+    frontend:
+        build: ./frontend
+        entrypoint: ./.docker/entrypoint.sh
+        tty: true
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        #command: sh -c "npm install && npm start"
+        volumes:
+            - ./frontend:/home/node/app
+        ports:
+          - 3000:3000
+          - 35729:35729
